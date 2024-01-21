@@ -42,7 +42,6 @@ public class amounts {
     }
 
 
-
     // gets how many rolls were made and prints the array, including percentages, median, and average
     public void printArray(int rollsAmount) {
         System.out.println("Average roll: " + (float)(totalSum)/rollsAmount);
