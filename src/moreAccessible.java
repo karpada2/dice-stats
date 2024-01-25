@@ -28,29 +28,6 @@ public class moreAccessible {
         }
     }
 
-    //timeToReroll can be inputted as whatever if reroll is false, won't check it at all, best idea is to default to -1 apparently
-    public static String buildRollStringID(int diceCount, int diceType, boolean reroll, int timeToReroll, boolean[] numbersToReroll, int high, int low, String divTime, int addSub) {
-        String out = diceCount + "d" + diceType;
-        if (reroll) {
-            out += "T" + timeToReroll + "re_";
-            for (int i = 1; i < numbersToReroll.length; i++) {
-                if (numbersToReroll[i]) {
-                    out += i + "_";
-                }
-            }
-        } else {
-            out += "F_";
-        }
-        out += "high" + high + "low" + low;
-        if (divTime.charAt(0) == '*' || divTime.charAt(0) == 'x' || divTime.charAt(0) == 'X') {
-            out += "time";
-        } else {
-            out += "div";
-        }
-        out += divTime.substring(1);
-        out += "add" + addSub;
-        return out;
-    }
 
     static Scanner sc = new Scanner(System.in);
 
@@ -133,10 +110,16 @@ public class moreAccessible {
             for (int j = 0; j < destroyLowAmount; j++) {
                 results.dropLowest();
             }
-            tracker.addRoll(multiplyOrDivideByStringContentAndNum(results.returnSum(), multiplierDivider)+add);
+            if (multiplyOrDivideByStringContentAndNum(results.returnSum(), multiplierDivider)+add <= 1) {
+                tracker.addRoll(1);
+            } else {
+                tracker.addRoll(multiplyOrDivideByStringContentAndNum(results.returnSum(), multiplierDivider)+add);
+            }
         }
         tracker.printArray(num);
-        System.out.println(buildRollStringID(amount, type, shouldReroll, rerollAmount, reroll, destroyHighAmount, destroyLowAmount, multiplierDivider, add));
+        String temp = DatabaseHandler.buildRollStringID(amount, type, shouldReroll, rerollAmount, reroll, destroyHighAmount, destroyLowAmount, multiplierDivider, add);
+        System.out.println(temp);
+        System.out.println(DatabaseHandler.createFile(temp));
     }
     //figure out yaml, how to name the appropriate file, (oh yeah btw, each roll will have its own yaml file which will act so sort of a database, improving results the more rolls are made).
     // should also make a class that handles this shit, like it gets an amounts and updates accordingly/writes to it the results or smth.
