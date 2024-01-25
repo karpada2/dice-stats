@@ -1,8 +1,8 @@
-public class amounts {
+public class Amounts {
     private final int[] arr; // main array
     private int totalSum = 0;
 
-    public amounts(int maxValue) {
+    public Amounts(int maxValue) {
         arr = new int[maxValue+1];
     }
 

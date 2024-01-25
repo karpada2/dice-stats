@@ -14,7 +14,7 @@ public class MoreAccessible {
         }
     }
 
-    public static void rerollUntilDone(boolean[] boolArr, rolls results) {
+    public static void rerollUntilDone(boolean[] boolArr, Rolls results) {
         boolean notDone = true;
         while (notDone) {
             notDone = false;
@@ -40,7 +40,7 @@ public class MoreAccessible {
         int amount = sc.nextInt();
         System.out.println("Enter type of dice");
         int type = sc.nextInt();
-        rolls results;
+        Rolls results;
         System.out.println("Input amount of times test will repeat");
         sc.nextLine();
         String quality = sc.nextLine();
@@ -68,7 +68,7 @@ public class MoreAccessible {
         System.out.println("What should the program add after dividing or multiplying?");
         int add = sc.nextInt();
         int maxResult = multiplyOrDivideByStringContentAndNum(((amount-destroyHighAmount-destroyLowAmount) * type),multiplierDivider) + add;
-        amounts tracker = new amounts(maxResult);
+        Amounts tracker = new Amounts(maxResult);
         System.out.println("Should the program reroll certain numbers? ");
         sc.nextLine();
         boolean[] reroll = {false};
@@ -90,7 +90,7 @@ public class MoreAccessible {
         }
         System.out.println("Calculating...");
         for (int i = 0; i < num; i++) {
-            results = new rolls(amount, type);
+            results = new Rolls(amount, type);
             results.rollAll();
             if (rerollAmount == 0) { //
                 rerollUntilDone(reroll, results);
@@ -111,11 +111,7 @@ public class MoreAccessible {
             for (int j = 0; j < destroyLowAmount; j++) {
                 results.dropLowest();
             }
-            if (multiplyOrDivideByStringContentAndNum(results.returnSum(), multiplierDivider)+add <= 1) {
-                tracker.addRoll(1);
-            } else {
-                tracker.addRoll(multiplyOrDivideByStringContentAndNum(results.returnSum(), multiplierDivider)+add);
-            }
+            tracker.addRoll(Math.max(multiplyOrDivideByStringContentAndNum(results.returnSum(), multiplierDivider) + add, 1));
         }
         tracker.printArray(num);
         String temp = DatabaseHandler.buildRollStringID(amount, type, shouldReroll, rerollAmount, reroll, destroyHighAmount, destroyLowAmount, multiplierDivider, add);

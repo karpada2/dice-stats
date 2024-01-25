@@ -1,11 +1,11 @@
 import java.util.ArrayList;
 
-public class rolls {
-    private ArrayList<dice> diceRolls = new ArrayList<dice>();
+public class Rolls {
+    private ArrayList<Dice> diceRolls = new ArrayList<Dice>();
 
-    public rolls(int amount, int type) {
+    public Rolls(int amount, int type) {
         for (int i = 0; i < amount; i++) {
-            diceRolls.add(new dice(type));
+            diceRolls.add(new Dice(type));
         }
     }
 

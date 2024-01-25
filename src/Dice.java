@@ -1,11 +1,11 @@
-public class dice {
+public class Dice {
     private int outcome;
     private int type; //e.g. d6, d12 etc.
-    public dice(int type) {
+    public Dice(int type) {
         this.type = type;
     }
 
-    public dice(dice anotherDice) {
+    public Dice(Dice anotherDice) {
         this.type = anotherDice.type;
         this.outcome = anotherDice.outcome;
     }
