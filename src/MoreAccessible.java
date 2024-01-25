@@ -1,6 +1,7 @@
+import java.io.IOException;
 import java.util.*;
 
-public class moreAccessible {
+public class MoreAccessible {
     //recieves any num, and a String in the format of "/51" or "*124" or "x142", first meaning divide by and last two meaning multiply by
     //if it returns -1 user is an idiot, delete his system32 file.
     public static int multiplyOrDivideByStringContentAndNum(int num, String str) {
@@ -31,11 +32,11 @@ public class moreAccessible {
 
     static Scanner sc = new Scanner(System.in);
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         System.out.println("------------------------------------------------------------");
         System.out.println("ALWAYS ENTER POSITIVE WHOLE NUMBERS, UNLESS STATED OTHERWISE");
         System.out.println("------------------------------------------------------------");
-        System.out.println("Enter amount of dice");
+        System.out.println("Enter amount of dice!!!");
         int amount = sc.nextInt();
         System.out.println("Enter type of dice");
         int type = sc.nextInt();

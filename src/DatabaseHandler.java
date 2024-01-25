@@ -1,6 +1,7 @@
 import java.io.FileWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 
 public class DatabaseHandler {
 
@@ -30,13 +31,13 @@ public class DatabaseHandler {
 
     //use BufferedReader instead of Scanner apparently
 
-    public static boolean createFile(String ID) {
+    public static boolean createFile(String ID) throws IOException {
         File fileyBoy = new File("database\\" + ID + ".txt");
         if (fileyBoy.exists()) {
             return false;
         }
         fileyBoy.createNewFile();
-        FileWrite writeShitter = new FileWriter(fileyBoy);
+        FileWriter writeShitter = new FileWriter(fileyBoy);
         writeShitter.write("IT FUCKING WORKS LETS GOOOOOOOOOOOO");
         writeShitter.flush();
         return true;
