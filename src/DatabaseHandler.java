@@ -1,7 +1,7 @@
-import java.io.FileWriter;
 import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.FileWriter;
 import java.io.IOException;
+
 public class DatabaseHandler {
 
     //timeToReroll can be inputted as whatever if reroll is false, won't check it at all, best idea is to default to -1 apparently
@@ -30,14 +30,20 @@ public class DatabaseHandler {
 
     //use BufferedReader instead of Scanner apparently
 
-    public static boolean createFile(String ID) throws IOException {
+    private static File createEmptyFile(String ID) throws IOException {
         File fileBoy = new File("database\\");
-        boolean createdDir = fileBoy.mkdirs();
-        fileBoy = new File("database\\" + ID + ".txt");
-        FileWriter fileShitter = new FileWriter(fileBoy);
-        fileShitter.write("hello\n");
-        fileShitter.write("there");
-        fileShitter.flush();
-        return createdDir;
+        fileBoy.mkdirs();
+        fileBoy = new File("database\\" + ID + ".json");
+        fileBoy.createNewFile();
+        return fileBoy;
+    }
+
+    public static boolean createFile(String ID) {
+        try {
+            JsonHandler.initializeFile(createEmptyFile(ID));
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 }
