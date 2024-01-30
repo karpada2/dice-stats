@@ -36,7 +36,7 @@ public class MoreAccessible {
         System.out.println("------------------------------------------------------------");
         System.out.println("ALWAYS ENTER POSITIVE WHOLE NUMBERS, UNLESS STATED OTHERWISE");
         System.out.println("------------------------------------------------------------");
-        System.out.println("Enter amount of dice!!!");
+        System.out.println("Enter amount of dice");
         int amount = sc.nextInt();
         System.out.println("Enter type of dice");
         int type = sc.nextInt();
