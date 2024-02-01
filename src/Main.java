@@ -41,22 +41,7 @@ public class Main {
         int type = sc.nextInt();
         Rolls results;
         System.out.println("Input amount of times test will repeat");
-        sc.nextLine();
-        String quality = sc.nextLine();
-        int num = 100000;
-        if (quality.equalsIgnoreCase("trash")) {
-            num = 1000;
-        } else if (quality.equalsIgnoreCase("okay")) {
-            num = 10000;
-        } else if (quality.equalsIgnoreCase("good")) {
-            num = 100000;
-        } else if (quality.equalsIgnoreCase("great")) {
-            num = 1000000;
-        } else if (quality.equalsIgnoreCase("amazing")) {
-            num = 10000000;
-        } else if (quality.equals("gottaSaveAmos")) {
-            num = 100000000;
-        }
+        int num = sc.nextInt();
         System.out.println("how many of the highest resulting dice should the program destroy?");
         int destroyHighAmount = sc.nextInt();
         System.out.println("how many of the lowest resulting dice should the program destroy?");
