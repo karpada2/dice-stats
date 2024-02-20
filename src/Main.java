@@ -98,9 +98,6 @@ public class Main {
             tracker.addRoll(Math.max(multiplyOrDivideByStringContentAndNum(results.returnSum(), multiplierDivider) + add, 1));
         }
         tracker.printArray(num);
-        String temp = DatabaseHandler.buildRollStringID(amount, type, shouldReroll, rerollAmount, reroll, destroyHighAmount, destroyLowAmount, multiplierDivider, add);
-        System.out.println(temp);
-        System.out.println(DatabaseHandler.createFile(temp));
     }
     //figure out yaml, how to name the appropriate file, (oh yeah btw, each roll will have its own yaml file which will act so sort of a database, improving results the more rolls are made).
     // should also make a class that handles this shit, like it gets an amounts and updates accordingly/writes to it the results or smth.

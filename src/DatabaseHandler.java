@@ -1,11 +1,14 @@
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 
 public class DatabaseHandler {
 
+    private JsonHandler handler;
+
     //timeToReroll can be inputted as whatever if reroll is false, won't check it at all, best idea is to default to -1 apparently
-    public static String buildRollStringID(int diceCount, int diceType, boolean reroll, int timeToReroll, boolean[] numbersToReroll, int high, int low, String divTime, int addSub) {
+    private String buildRollStringID(int diceCount, int diceType, boolean reroll, int timeToReroll, boolean[] numbersToReroll, int high, int low, String divTime, int addSub) {
         String out = diceCount + "d" + diceType;
         if (reroll) {
             out += "T" + timeToReroll + "re_";
@@ -28,22 +31,19 @@ public class DatabaseHandler {
         return out;
     }
 
+
+    public DatabaseHandler(int diceCount, int diceType, boolean reroll, int timeToReroll, boolean[] numbersToReroll, int high, int low, String divTime, int addSub) throws Exception {
+        handler = new JsonHandler(new File("database\\" + buildRollStringID(diceCount, diceType, reroll, timeToReroll, numbersToReroll, high, low, divTime, addSub) + ".json"));
+    }
+
     //use BufferedReader instead of Scanner apparently
 
-    private static File createEmptyFile(String ID) throws IOException {
-        File fileBoy = new File("database\\");
-        fileBoy.mkdirs();
-        fileBoy = new File("database\\" + ID + ".json");
-        fileBoy.createNewFile();
-        return fileBoy;
+    public boolean createEmptyFile() throws IOException {
+        return handler.createEmptyFile();
     }
 
-    public static boolean createFile(String ID) {
-        try {
-            JsonHandler.initializeFile(createEmptyFile(ID));
-            return true;
-        } catch (Exception e) {
-            return false;
-        }
+    public boolean initializeFile() {
+        if (handler.getFile().exists());
     }
+
 }
